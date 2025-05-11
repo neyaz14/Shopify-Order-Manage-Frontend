@@ -75,8 +75,8 @@ const OrderRow = ({ order, hnadleConfirmed ,courierInfo,courierLoading,handleSen
                 summary: {
                     quantity: lineItems.reduce((sum, item) => sum + (item?.quantity || 0), 0),
                     subtotal: Math.round(parseFloat(order?.subtotalPriceSet?.shopMoney?.amount)) || 0,
-                    shippingFee: Math.round(parseFloat(order?.totalShippingPriceSet?.shopMoney?.amount)) || 0,
-                    totalAmount: Math.round(parseFloat(order?.totalPriceSet?.shopMoney?.amount)) || 0,
+                    shippingFee: Math.round(parseFloat(order?.totalShippingPriceSet?.shopMoney?.amount)) || 60,
+                    totalAmount: Math.round(parseFloat(order?.totalPriceSet?.shopMoney?.amount)+60)  || 0,
                 },
 
                 payment: {
@@ -193,9 +193,9 @@ const OrderRow = ({ order, hnadleConfirmed ,courierInfo,courierLoading,handleSen
                     {order?.shippingAddress?.phone || customer?.phone}
                 </div>
             </td>
-            <td className="font-medium">
-                {Math.round(parseFloat(order?.totalPriceSet?.shopMoney?.amount)) || "0.00"}
-                {order?.totalPriceSet?.shopMoney?.currencyCode || "BDT"}
+            <td className="font-medium ">
+                <span className='text-[16px]'>{Math.round(parseFloat(order?.totalPriceSet?.shopMoney?.amount)) || "0.00"}</span>
+                 <span className='ml-1'>{ order?.totalPriceSet?.shopMoney?.currencyCode || " BDT"}</span>
             </td>
             <td className="text-center">
                 <div className="badge badge-success">100 %</div>
